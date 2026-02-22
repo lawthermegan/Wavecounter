@@ -1,1 +1,2 @@
-# Wavecounter
+
+Automatic # Wavecounter
