@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+}
+
+#game-scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+}
+
+#counter {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 32px;
+  color: #fff;
+  text-shadow: 4px 4px 0 #01579b;
+  z-index: 100;
+}
+
+#sun {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  background: #fdfc47;
+  border: 4px solid #f9a825;
+}
+
+#sand-dunes {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: #f4d03f;
+  border-top: 8px solid #d4ac0d;
+}
+
+#palm-tree {
+  position: absolute;
+  bottom: 120px;
+  left: 75%;
+  font-size: 130px;
+  transform-origin: bottom center;
+  z-index: 5;
+}
+
+/* CONTINUOUS WAVE ANIMATION */
+#wave-container {
+  position: absolute;
+  bottom: 120px;
+  left: -400px;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.wave-foam { height: 15%; background: #fff; width: 110%; }
+.wave-top { height: 25%; background: #03a9f4; width: 100%; }
+.wave-middle { height: 30%; background: #0288d1; width: 95%; }
+.wave-bottom { height: 30%; background: #01579b; width: 90%; }
+
+.wave-loop {
+  animation: infiniteWave 3s steps(60) infinite;
+}
+
+@keyframes infiniteWave {
+  0% { left: -400px; transform: scale(1); }
+  40% { transform: scale(1.3, 0.9); }
+  70% { left: 80%; transform: scale(4, 0.1); opacity: 1; }
+  80% { opacity: 0; }
+  100% { left: -400px; opacity: 0; }
+}
+
+/* BOUNCING BEACH BALL (Opposite Direction) */
+#beach-ball {
+  position: absolute;
+  bottom: 120px;
+  font-size: 50px;
+  z-index: 15;
+  animation: ballMove 6s linear infinite, ballBounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes ballMove {
+  0% { left: 110%; } /* Starts on the right */
+  100% { left: -10%; } /* Ends on the left */
+}
+
+@keyframes ballBounce {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-100px) rotate(360deg); }
+}
+
+/* Tree shake effect remains the same */
+.tree-hit { animation: shake 0.4s; }
+@keyframes shake {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
+}
